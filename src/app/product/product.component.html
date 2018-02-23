@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+  	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+  		<h3>Simple Crud operation application</h3>
+  	</div>
+  </div>
+   <div class="row">
+  	<div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+  		<button type="button" class="btn btn-lg btn-primary">Current User: test@test.com</button>
+  	</div>
+  </div>
+  <div class="row">
+  	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 mt-20">
+  		<button (click)="add(template)" type="button" class="btn  btn-success">Add product</button>
+  	</div>
+  	<div class="col-md-6 col-lg-6 col-xs-12 col-sm-12 mt-20">
+  		<table class="table table-bordered table-responsive">
+  			<thead>
+  				<tr>
+	  				<th>Action</th>
+	  				<th>Product Name</th>
+	  				<th>Product Price</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<tr  *ngFor="let p of products; trackBy: index;">
+	  				<td>
+	  					<a class="pointer" (click)="update(template,p)">Edit</a> | <a class="pointer" (click)="delete(p)">Remove</a>
+	  				</td>
+	  				<td>{{p.name}}</td>
+	  				<td>{{p.price}}</td>
+  				</tr>
+  			</tbody>
+  		</table>
+  	</div>
+  </div>
+</div>
+<ng-template #template>
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="productForm" (ngSubmit)="submit(productForm)" >
+	  <div class="form-group">
+	    <label for="name">Name*</label>
+	    <input  formControlName="name" type="text"   class="form-control" id="name" placeholder="Product Name" >
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Price*</label>
+	    <input   type="number" class="form-control" id="price" formControlName="price" placeholder="Product Price">
+	  </div>
+	  <button type="submit" [disabled]="!productForm.valid" class="btn btn-default">Submit</button>
+	</form>
+  </div>
+</ng-template>

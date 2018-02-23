@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.modal-open .modal {
+    position: fixed;
+    top: 60px !important;
+    right: 30px !important;
+    bottom: 0px !important;
+    left: auto !important;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
